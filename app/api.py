@@ -3,6 +3,7 @@ import numpy as np
 from fastapi import FastAPI, Response
 from joblib import load
 from .schemas import Wine, Rating, feature_names
+from .monitoring import instrumentator
 
 ROOT_DIR = Path(__file__).parent.parent
 
@@ -10,6 +11,8 @@ app = FastAPI()
 scaler = load(ROOT_DIR / "artifacts/scaler.joblib")
 model = load(ROOT_DIR / "artifacts/model.joblib")
 
+# 프로메테우스 메트릭 수집 객체(instrumentor)에 FastAPI 애플리케이션을 등록
+instrumentator.instrument(app).expose(app, include_in_schema=False, should_gzip=True)
 
 @app.get("/")
 def root():
