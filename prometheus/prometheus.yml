@@ -11,3 +11,8 @@ scrape_configs:
   static_configs:
   - targets:
     - hk-fastapi-monitoring  # metrics from model
+- job_name: 'jenkins'
+  metrics_path: /prometheus/
+  static_configs:
+    - targets:
+      - http://ec2-15-168-66-215.ap-northeast-3.compute.amazonaws.com:8080
