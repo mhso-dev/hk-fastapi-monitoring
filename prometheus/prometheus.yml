@@ -15,4 +15,4 @@ scrape_configs:
   metrics_path: /prometheus/
   static_configs:
     - targets:
-      - http://ec2-15-168-66-215.ap-northeast-3.compute.amazonaws.com:8080
+      - "http://ec2-15-168-66-215.ap-northeast-3.compute.amazonaws.com:8080"
